@@ -1,0 +1,6 @@
+.git
+.gitignore
+logs/*
+state/*
+screenshots/*
+README.md
