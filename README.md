@@ -71,3 +71,22 @@ Docker Compose
 Start the application:
 
 docker compose up --build
+
+
+## CI/CD
+
+This project uses GitHub Actions for continuous integration.
+
+The pipeline automatically:
+
+1. Checks out the repository
+2. Validates Bash syntax
+3. Runs automated tests
+4. Builds the Docker image
+5. Runs the Docker container
+6. Verifies expected application output
+
+Workflow file:
+
+```text
+.github/workflows/ci.yml

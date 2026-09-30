@@ -16,14 +16,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Check Bash syntax
-        run: bash -n monitor.sh
+      - name: Make scripts executable
+        run: |
+          chmod +x monitor.sh
+          chmod +x tests/test.sh
 
-      - name: Make script executable
-        run: chmod +x monitor.sh
+      - name: Run tests
+        run: ./tests/test.sh
 
       - name: Build Docker image
         run: docker build -t linux-server-monitor:test .
 
       - name: Test Docker container
-        run: docker run --rm linux-server-monitor:test
+        run: |
+          docker run --rm linux-server-monitor:test > output.txt
+          cat output.txt
+          grep "Overall Status" output.txt
